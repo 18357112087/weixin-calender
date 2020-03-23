@@ -31,17 +31,17 @@
         <!--<view class="day box box-align-center box-pack-center">{{item}}</view>-->
 
         <!--<view class="day box box-align-center box-pack-center">{{item}}</view>-->
-        <view wx:for="{{yue}}" wx:for-item="y">
+        <view wx:for="{{yue}}" wx:for-item="y" wx:key="{{index}}">
           <view wx:if="{{item == y}}">
             <view class="day box box-align-center box-pack-center border-radius pink-bg">{{item}}</view>
           </view>
         </view>
-        <view wx:for="{{weixian}}" wx:for-item="w">
+        <view wx:for="{{weixian}}" wx:for-item="w" wx:key="{{index}}">
           <view wx:if="{{item == w}}">
             <view class="day box box-align-center box-pack-center border-radius purple-bg">{{item}}</view>
           </view>
         </view>
-        <view wx:for="{{anquan}}" wx:for-item="a">
+        <view wx:for="{{anquan}}" wx:for-item="a" wx:key="{{index}}">
           <view wx:if="{{item == a}}">
             <view class="day box box-align-center box-pack-center border-radius green-bg">{{item}}</view>
           </view>
