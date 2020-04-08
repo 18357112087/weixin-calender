@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 var app = getApp()
+const db = wx.cloud.database()
 var lastid = 0
 var limit = 5
 var utils = require('../../utils/util.js')
@@ -13,7 +14,8 @@ Page({
     loading: false,
     plain: false,
     newsList: [],
-    scrollviewHeight:500
+    scrollviewHeight:500,
+    banner:[]
   },
   //事件处理函数
   bindViewTap: function(e) {
@@ -30,28 +32,32 @@ Page({
       limit:limit,
       lastid:lastid,
     })
-    wx.request({
-      url: 'http://localhost/index.php?s=/addon/Yuejin/Yuejin/getlist',
-       data: {
-         limit:limit,
-         lastid:lastid,
-       },
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        if(!res.data){
-           return false
-         }
-         that.setData({
-           loading: false,
-           newsList:that.data.newsList.concat(res.data)
-          //  list: that.data.list.concat([{ header: utils.formatDate(date, '-') }]).concat(res.data.stories)
-         })
-        var len = res.data.length
-         lastid = res.data[len-1].id;
-      }
-    })
+    db.collection('knowledge')
+      .get().then(knowledge => {
+        console.log(knowledge)
+      })
+    // wx.request({
+    //   url: 'http://localhost/index.php?s=/addon/Yuejin/Yuejin/getlist',
+    //    data: {
+    //      limit:limit,
+    //      lastid:lastid,
+    //    },
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   success: function (res) {
+    //     if(!res.data){
+    //        return false
+    //      }
+    //      that.setData({
+    //        loading: false,
+    //        newsList:that.data.newsList.concat(res.data)
+    //       //  list: that.data.list.concat([{ header: utils.formatDate(date, '-') }]).concat(res.data.stories)
+    //      })
+    //     var len = res.data.length
+    //      lastid = res.data[len-1].id;
+    //   }
+    // })
   },
  
   onLoad: function () {
@@ -61,40 +67,54 @@ Page({
       scrollviewHeight:res.windowHeight
     })
     console.log("屏幕高度"+res.windowHeight);
-    wx.request({
-       url: 'http://localhost/index.php?s=/addon/Yuejin/Yuejin/getList',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data)
-         that.setData({
-           banner:res.data,
-         })
-      }
-    })
-    wx.request({
-       url: 'http://localhost/index.php?s=/addon/Yuejin/Yuejin/getList',
-       data: {
-         limit:limit,
-         lastid:lastid,
-       },
-       header: {
-         'content-type': 'application/json'
-       },
-       success: function (res) {
-         if(!res.data){
-           return false
-         }
-         //更新数据
-         that.setData({
-           newsList: res.data
-         })
-        //  var len = that.data.newsList.concat(res.data).length
-        var len = res.data.length
-         lastid = res.data[len-1].id;
-        console.log("ahaha"+lastid)
-      }
-    })
+    db.collection('knowledge')
+      .get().then(knowledge => {
+        console.log(knowledge)
+        that.setData({
+          newsList:knowledge.data
+        })
+      })
+    db.collection('banner')
+      .get().then(banner => {
+        console.log(banner)
+        that.setData({
+          banner: banner.data
+        })
+      })
+    // wx.request({
+    //    url: 'http://localhost/index.php?s=/addon/Yuejin/Yuejin/getList',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   success: function (res) {
+    //     console.log(res.data)
+    //      that.setData({
+    //        banner:res.data,
+    //      })
+    //   }
+    // })
+    // wx.request({
+    //    url: 'http://localhost/index.php?s=/addon/Yuejin/Yuejin/getList',
+    //    data: {
+    //      limit:limit,
+    //      lastid:lastid,
+    //    },
+    //    header: {
+    //      'content-type': 'application/json'
+    //    },
+    //    success: function (res) {
+    //      if(!res.data){
+    //        return false
+    //      }
+    //      //更新数据
+    //      that.setData({
+    //        newsList: res.data
+    //      })
+    //     //  var len = that.data.newsList.concat(res.data).length
+    //     var len = res.data.length
+    //      lastid = res.data[len-1].id;
+    //     console.log("ahaha"+lastid)
+    //   }
+    // })
   },
 })

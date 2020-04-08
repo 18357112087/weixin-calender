@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/picker/picker",
+    "pages/calendar/calendar",
     "pages/lists/lists",
-    "pages/detail/detail",
-    "pages/calendar/calendar"
+    "pages/picker/picker",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FF5073",
-    "navigationBarTitleText": "月经记录小程序",
+    "navigationBarTitleText": "月经记录",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },

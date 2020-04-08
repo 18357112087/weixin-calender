@@ -2,7 +2,7 @@
 
   <!--顶部轮幕-->
   <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" class="banners" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{banner}}">
+    <block wx:for="{{banner}}" wx:key="{{index}}">
       <swiper-item class="banner">
 
         <!--<image src="{{item.image}}"  data-id="{{item.id}}" bindtap="bindViewTap" class="banner-image" width="100%" height="100%"/>
@@ -17,7 +17,7 @@
 
   <!--文章列表模板-->
   <template name="itmes">
-    <navigator url="../../pages/detail/detail?id={{id}}" hover-class="navigator-hover">
+    <navigator url="../../pages/detail/detail?id={{_id}}" hover-class="navigator-hover">
 
       <!--数据来自newsList，newsList中的key-value结构跟title、cTime一样-->
       <view class="news-item">
@@ -34,7 +34,7 @@
     <text class="sub-title">月经小知识</text>
 
     <!--循环输出列表-->
-    <view  wx:for="{{newsList}}" >
+    <view  wx:for="{{newsList}}" wx:key="{{index}}" >
       <!--引用上面定义的模板，...item是默认写法-->
       <template is="itmes" data="{{...item}}" />
     </view>

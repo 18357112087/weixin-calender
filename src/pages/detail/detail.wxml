@@ -11,6 +11,7 @@
         {{info.content}}
     </view> -->
     <view class="wxParse text_L">
-        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+        <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
+        
     </view>
 </view>
