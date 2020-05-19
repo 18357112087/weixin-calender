@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/picker/picker",
     "pages/calendar/calendar",
     "pages/lists/lists",
-    "pages/picker/picker",
     "pages/detail/detail"
   ],
   "window": {

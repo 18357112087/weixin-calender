@@ -10,6 +10,9 @@ const page = {
     canvasewidth: 375,
     pailuanri:0
   },
+  onLoad: function (options) {
+    console.log("page is loading")
+  },
 
   // 控制scroll-view高度
   getSystemInfo() {

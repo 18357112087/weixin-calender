@@ -4,7 +4,7 @@ const page = {
   data: {
     array: [],
     array2: [],
-    date: '2016-09-01',
+    date: '2022-09-01',
     index: 5,
     index2: 28,
     tocalendar: 0
@@ -31,7 +31,12 @@ const page = {
       var zhouqi = wx.getStorageSync('zhouqi');
       //上次月经日期
       var zuijinriqi = wx.getStorageSync('zuijinriqi');
-      if(jinqi!=null&&zhouqi!=null&&zuijinriqi!=null){
+      console.log(jinqi)
+      console.log(zhouqi)
+      console.log(zuijinriqi)
+      
+    if (jinqi != "" && zhouqi != "" && zuijinriqi != ""){
+        console.log('不为空,提取本地数据')
         this.setData({
           index:jinqi,
           index2:zhouqi,
@@ -42,7 +47,13 @@ const page = {
   onLoad: function () {
     //月经持续时间
     ayu = wx.getStorageSync('jinqi');
-    if (ayu != "AYU") {
+    console.log(ayu)
+    // if (ayu != "AYU") {
+    //   wx.switchTab({
+    //     url: '../calendar/calendar'
+    //   })
+    // }
+    if (ayu != "") {
       wx.switchTab({
         url: '../calendar/calendar'
       })
