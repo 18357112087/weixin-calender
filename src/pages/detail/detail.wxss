@@ -7,10 +7,15 @@
 
     color: black;
 }
-
+.news-image{
+    width: 100px;
+    height: 80px;
+  }
+  
 .art-img{
     width: 100%;
-    height: 219px;
+   
+    height: 719px;
 }
 
 .art-title{

@@ -1,6 +1,10 @@
+  <form  bindsubmit="formSubmit" >
 <view class="container">
+
   <view class="page-body">
+  
     <view class="page-section">
+
       <view class="weui-cells__title">您的月经大概持续几天？</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
@@ -45,5 +49,8 @@
       </view>
     </view>
   </view>
-  <button class="save_btn" bindtap="save_btn" data-array="{{array[index]}}" data-arrayb="{{array2[index2]}}" data-date="{{date}}"> 保存 </button>
+
+  <button class="save_btn"  formType="submit" data-array="{{array[index]}}" data-arrayb="{{array2[index2]}}" data-date="{{date}}"> 保存 </button>
+  
 </view>
+</form>

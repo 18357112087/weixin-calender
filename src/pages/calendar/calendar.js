@@ -4,11 +4,20 @@ const page = {
   data: {
     // hasEmptyGrid 变量控制是否渲染空格子，若当月第一天是星期天，就不应该渲染空格子
     hasEmptyGrid: false,
+    //月经期
     yue: [],
+
+    //安全期
     anquan: [],
+
+    //危险期
     weixian: [],
-    canvasewidth: 375,
-    pailuanri:0
+
+    //排卵日
+    pailuanri: 0,
+    canvasewidth: 375
+
+
   },
   onLoad: function (options) {
     console.log("page is loading")
@@ -38,6 +47,7 @@ const page = {
   },
   // 计算当月1号前空了几个格子
   calculateEmptyGrids(year, month) {
+    //当月第一天是礼拜几的参数
     const firstDayOfWeek = this.getFirstDayOfWeek(year, month);
     let empytGrids = [];
     if (firstDayOfWeek > 0) {
@@ -126,6 +136,7 @@ const page = {
     console.log(jinqi, zhouqi, date);
     //月经日期对应的毫秒数
     var zui = (new Date(zuijinriqi)).getTime();
+    //遍历一个月内每个日子
     for (let i = 1; i <= this.getThisMonthDays(cur_year, cur_month); i++) {
       var yueday = cur_year + "-" + cur_month + "-" + i;
       //比初始月经数据要小的日期，就使用前一次月经日期
@@ -145,18 +156,19 @@ const page = {
         yuejinqi.push(i)
         // console.log("y" + datediff)
         if (nowday == yueday) {
-          canvasetext = "月经期";
+          canvasetext = "今天是：月经期";
           canvaseNum = datediff + 1;
         }
       }
       if (jinqi <= datediff && datediff < zhouqi - 19) {
         anquanqi.push(i)
         if (nowday == yueday) {
-          canvasetext = "安全期";
+          canvasetext = "今天是：安全期";
           canvaseNum = datediff - jinqi + 1;
         }
       }
-      if (zhouqi - 19 <= datediff && datediff < zhouqi - 10) {
+      //最大的比较值-10改成-9
+      if (zhouqi - 19 <= datediff && datediff < zhouqi - 9) {
          if(datediff!=zhouqi-14){
            weixianqi.push(i)
          }
@@ -165,13 +177,16 @@ const page = {
           this.setData({
             pailuanri:i
           })
+          // canvasetext = "今天是：排卵日";
+          console.log('排卵日',i)
         }
         if (nowday == yueday) {
-          canvasetext = "危险期";
+          canvasetext = "今天是：危险期";
           canvaseNum = datediff - zhouqi + 20;
         }
       }
-      if (zhouqi - 10 <= datediff && datediff < 28) {
+      //这里将最大值比较的29改成了zhouqi,最小的比较值-10改成-9
+      if (zhouqi - 9 <= datediff && datediff < zhouqi) {
         anquanqi.push(i)
         if (nowday == yueday) {
           canvasetext = "安全期";
@@ -208,9 +223,11 @@ const page = {
     ctx.setFillStyle('#FF5073')
     ctx.fill()
 
-    ctx.setFontSize(15)
+    ctx.setFontSize(25)
     ctx.setFillStyle('#FFFFFF')
-    ctx.fillText(canvasetext, c2-24, c2/3-20)
+    //24 20
+    // ctx.fillText(canvasetext, c2-90, c2/3-10)
+    ctx.fillText(canvasetext, c2/2, c2/5)
     ctx.setFontSize(50)
     if(canvaseNum<10){
        ctx.fillText(canvaseNum, c2-15, c2-40)

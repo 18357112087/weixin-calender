@@ -1,9 +1,19 @@
 {
   "pages": [
     "pages/picker/picker",
+    "pages/home/home",
+    "pages/publish/publish",
     "pages/calendar/calendar",
     "pages/lists/lists",
-    "pages/detail/detail"
+    "pages/me/me",
+    "pages/test/test",
+    "pages/detail/detail",
+    "pages/homeDetail/homeDetail",
+    "pages/history/history",
+    "pages/collect/collect",
+    "pages/advance/advance",
+    "pages/replay/replay"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -29,10 +39,22 @@
         "selectedIconPath": "image/4.png"
       },
       {
+        "pagePath": "pages/home/home",
+        "text": "社区",
+        "iconPath": "image/2.png",
+        "selectedIconPath": "image/4.png"
+      },
+      {
         "pagePath": "pages/picker/picker",
         "text": "月经设置",
         "iconPath": "image/2.png",
         "selectedIconPath": "image/4.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我",
+        "iconPath": "image/tab/me_unselect.png",
+        "selectedIconPath": "image/tab/me_select.png"
       }
     ]
   },

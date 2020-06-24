@@ -59,6 +59,14 @@ Page({
     //   }
     // })
   },
+  onShareAppMessage: function() {
+    return {
+      title: '男朋友',
+      desc: '拒绝大血崩，让他来照顾你的大姨妈',
+      path: 'pages/list/list'
+    }
+  },
+
  
   onLoad: function () {
     var that = this

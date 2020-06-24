@@ -3,9 +3,12 @@
 <import src="../../wxParse/wxParse.wxml"/> 
 <view class="container">
     <view class="art-header">
-        <image src="{{info.img}}" class="art-img"/>
+        <view  wx:for="{{info.img}}" wx:key="index" >
+             <image src="{{item}}"  class="art-img"/>
+        </view>
         <view class="art-title">{{info.title}}</view>
         <view class="art-source">{{info.cTime}}</view>
+        
     </view>
     <!--<view class="art-content">
         {{info.content}}
